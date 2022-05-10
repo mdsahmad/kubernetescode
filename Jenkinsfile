@@ -12,23 +12,11 @@ node {
        app = docker.build("shahidahmad/pythontestapp")
     }
 
-    stage('Test image') {
-  
-
-        app.inside {
-            sh 'echo "Tests passed"'
-        }
-    }
-
     stage('Push image') {
         
         docker.withRegistry('https://registry.hub.docker.com', 'shahidahmad') {
             app.push("${env.BUILD_NUMBER}")
         }
     }
-    
-    stage('Trigger ManifestUpdate') {
-                echo "triggering updatemanifestjob"
-                build job: 'updatemanifest', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
-        }
+
 }
