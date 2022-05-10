@@ -5,3 +5,10 @@ pipeline:
     - stage: "Clone repository"
       steps:
         - "checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/mdsahmad/kubernetescode.git']]])"
+        
+    - stage: "Build Image"
+      steps:
+	    script:
+        - withDocker
+		      script:
+            - app = docker.build("shahidahmad/pythontestapp")    
