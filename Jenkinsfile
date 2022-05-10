@@ -12,14 +12,6 @@ node {
        app = docker.build("shahidahmad/pythontestapp")
     }
 
-    stage('Test image') {
-  
-
-        app.inside {
-            bat 'echo "Tests passed"'
-        }
-    }
-
     stage('Push image') {
         
         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
