@@ -4,4 +4,5 @@ pipeline:
   stages:
     - stage: "Clone repository"
       steps:
+        script:
         - git branch: 'main', url: 'https://github.com/mdsahmad/kubernetescode.git'
