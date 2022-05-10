@@ -9,14 +9,14 @@ node {
 
     stage('Build image') {
   
-       app = docker.build("raj80dockerid/test")
+       app = docker.build("shahidahmad/pythontestapp")
     }
 
     stage('Test image') {
   
 
         app.inside {
-            sh 'echo "Tests passed"'
+            bat 'echo "Tests passed"'
         }
     }
 
