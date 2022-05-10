@@ -4,4 +4,4 @@ pipeline:
   stages:
     - stage: "Clone repository"
       steps:
-        - "checkout scm"
+        - git branch: 'main', url: 'https://github.com/mdsahmad/kubernetescode.git'
