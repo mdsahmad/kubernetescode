@@ -11,4 +11,4 @@ pipeline:
         script:
           - withDocker:
 	    script:
-              - app = docker.build("shahidahmad/pythontestapp")    
+              - docker.build("shahidahmad/pythontestapp")    
