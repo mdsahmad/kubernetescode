@@ -2,13 +2,16 @@ pipeline:
   agent:
     any:
   stages:
-    - stage: "Clone repository"
+    - stage: "Log Jenkins Maven Docker Java and Git versions"
       steps:
-        - "checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/mdsahmad/kubernetescode.git']]])"
-        
-    - stage: "Build Image"
+        - sh "mvn -version"
+        - sh "java -version"
+        - sh "git --version"
+        - sh "docker --version"
+    - stage: "Jenkins YAML Maven Build"
       steps:
-        script:
-          - withDocker:
-	    script:
-              - docker.build("shahidahmad/pythontestapp")    
+        - git "https://github.com/learn-devops-fast/rock-paper-scissors.git"
+        - sh "mvn clean compile test install"
+    - stage: "Final Jenkins YAML Pipeline Stage"
+      steps:
+        - sh "echo 'Jenkins YAML Pipeline Complete'"
